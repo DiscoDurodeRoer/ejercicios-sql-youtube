@@ -1,0 +1,202 @@
+CREATE OR REPLACE PACKAGE GESTION_DISCOGRAFICA IS
+    PROCEDURE INSERTAR_MUSICO(
+        p_cod_musico MUSICOS.COD_MUSICO%type,
+        p_nombre_musico MUSICOS.NOMBRE_MUSICO%type,
+        p_pais MUSICOS.PAIS%type,
+        p_fecha_nacimiento MUSICOS.FECHA_NACIMIENTO%type,
+        p_grupo MUSICOS.GRUPO%type);
+    PROCEDURE TRABAJOS_HECHOS(p_cod_musico MUSICOS.COD_MUSICO%type);
+    PROCEDURE N_DISCOS(fecha DATE, n NUMBER);
+END;
+/
+
+
+CREATE OR REPLACE PACKAGE BODY GESTION_DISCOGRAFICA IS
+
+    PROCEDURE INSERTAR_MUSICO(
+        p_cod_musico MUSICOS.COD_MUSICO%type,
+        p_nombre_musico MUSICOS.NOMBRE_MUSICO%type,
+        p_pais MUSICOS.PAIS%type,
+        p_fecha_nacimiento MUSICOS.FECHA_NACIMIENTO%type,
+        p_grupo MUSICOS.GRUPO%type) 
+    AS 
+        v_grupo MUSICOS.GRUPO%type;
+    BEGIN
+    
+        SELECT COD_GRUPO into v_grupo
+        FROM GRUPOS
+        WHERE COD_GRUPO = p_grupo;
+        
+        INSERT INTO MUSICOS VALUES(
+            p_cod_musico,
+            p_nombre_musico,
+            p_pais,
+            p_fecha_nacimiento,
+            p_grupo
+        );
+        
+        DBMS_OUTPUT.PUT_LINE('SE HA INSERTADO EL MUSICO');
+        
+        
+    EXCEPTION
+      when no_data_found then
+        DBMS_OUTPUT.PUT_LINE('ESE CODIGO DE GRUPO NO EXISTE');
+      when DUP_VAL_ON_INDEX then
+        DBMS_OUTPUT.PUT_LINE('ESE CODIGO DE MUSICO YA EXISTE. PRUEBA CON OTRO');
+    END;
+    
+    
+    PROCEDURE TRABAJOS_HECHOS(p_cod_musico MUSICOS.COD_MUSICO%type)
+    AS
+        v_nombre_musico MUSICOS.NOMBRE_MUSICO%type;
+        v_grupo MUSICOS.GRUPO%type;
+        v_nombre_grupo GRUPOS.NOMBRE_GRUPO%type;
+        cursor discos_grupo is 
+            select nombre_disco 
+            from discos
+            where GRUPO = (select grupo from musicos where cod_musico = p_cod_musico)
+            ORDER BY FECHA_PUBLICACION;
+    BEGIN
+        
+        SELECT nombre_musico, GRUPO into v_nombre_musico, v_grupo
+        FROM MUSICOS
+        WHERE COD_MUSICO = p_cod_musico;
+        
+        SELECT NOMBRE_GRUPO into v_nombre_grupo
+        FROM GRUPOS
+        WHERE COD_GRUPO = v_grupo;
+        
+        
+        DBMS_OUTPUT.PUT_LINE('Nombre musico: ' || v_nombre_musico);
+        DBMS_OUTPUT.PUT_LINE('Nombre grupo: ' || v_nombre_grupo);
+        
+        DBMS_OUTPUT.PUT_LINE('Discos: ');
+        for disco in discos_grupo loop
+            dbms_output.put_line(disco.nombre_disco);
+        end loop;
+        
+    EXCEPTION
+        WHEN no_data_found THEN
+            DBMS_OUTPUT.PUT_LINE('MUSICO DESCONOCIDO');
+    END;
+    
+    PROCEDURE N_DISCOS(fecha DATE, n NUMBER)
+    AS
+        num_discos NUMBER(8);
+        v_disco discos.nombre_disco%type;
+        v_i number(8) := 0;
+        cursor discos_ant_fecha is
+            select NOMBRE_DISCO
+            from discos
+            where to_char(fecha_publicacion,'YYYY/MM/DD') < to_char(fecha,'YYYY/MM/DD')
+            order by fecha_publicacion;
+            
+            
+    BEGIN
+        
+        select count(*) into num_discos
+        from discos
+        where to_char(fecha_publicacion,'YYYY/MM/DD') < to_char(fecha,'YYYY/MM/DD')
+        order by fecha_publicacion;
+        
+        if num_discos > n then
+            
+          open discos_ant_fecha;
+
+          loop
+            fetch discos_ant_fecha into v_disco;
+            exit when n = v_i;
+          
+            dbms_output.put_line(v_disco);
+            
+            v_i := v_i + 1;
+          
+          end loop;
+        
+          close discos_ant_fecha;
+            
+        else
+        
+            for disco in discos_ant_fecha loop
+                dbms_output.put_line(disco.NOMBRE_DISCO);
+            end loop;
+        
+        end if;
+        
+        
+    END;
+    
+END;
+/
+
+begin
+GESTION_DISCOGRAFICA.INSERTAR_MUSICO(39, 
+    'David', 
+    'Reino Unido', 
+    TO_DATE('11/11/1949', 'MM/DD/YYYY'), 
+    8);
+GESTION_DISCOGRAFICA.TRABAJOS_HECHOS(1);
+GESTION_DISCOGRAFICA.N_DISCOS(to_date('05/05/40', 'DD/MM/RR'), 20);
+end;
+/
+
+DROP TABLE AUDITORIA;
+CREATE TABLE AUDITORIA (
+    AUD_ID NUMBER(8),
+    AUD_FECHA DATE,
+    AUD_DISCO NUMBER(4),
+    AUD_OPERACION VARCHAR2(15)
+);
+
+create or replace trigger AUDITAR_DISCOS
+after insert or update or delete on discos FOR EACH ROW
+declare
+    v_id NUMBER(8);
+    v_cod_disco DISCOS.COD_DISCO%type;
+    v_type AUDITORIA.AUD_OPERACION%type;
+begin
+    
+    SELECT MAX(AUD_ID) INTO v_id
+    FROM AUDITORIA;
+    
+    IF v_id is null then
+        v_id := 1;
+    else
+        v_id := v_id + 1;
+    end if;
+    
+    
+    IF INSERTING THEN
+        v_type := 'INSERCION';
+        v_cod_disco := :new.cod_disco;
+    ELSIF UPDATING THEN
+        v_type := 'MODIFICACION';
+        v_cod_disco := :old.cod_disco;
+    ELSIF DELETING THEN
+        v_type := 'BORRADO';
+        v_cod_disco := :old.cod_disco;
+    END IF;
+    
+    INSERT INTO AUDITORIA VALUES(
+        v_id,
+        SYSDATE,
+        v_cod_disco,
+        v_type
+    );
+    
+    DBMS_OUTPUT.PUT_LINE('INSERTADO AUDITORIA');
+    
+end;
+/
+
+INSERT INTO DISCOS
+VALUES (83, 'Tales of mystery and imagination',  TO_DATE('2/22/1976','MM/DD/YYYY'), 1, 'LP', 1, 2);
+
+update discos set nombre_disco = '1' where cod_disco = 83;
+
+delete from discos where cod_disco = 83;
+
+select * from auditoria;
+
+
+            
