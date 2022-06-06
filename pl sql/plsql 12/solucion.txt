@@ -1,0 +1,18 @@
+
+update pedidos set fechaentrega = to_date('01/01/05') where codigopedido = 1;
+
+
+create or replace trigger actualizar_comentarios_pedidos
+before update of fechaentrega on pedidos FOR EACH ROW
+declare
+begin
+    if :new.fechaentrega is not null then
+        if :new.fechaentrega > :old.fechaesperada then
+            :new.comentarios := :old.comentarios || ' pedido entregado con retraso';
+        else
+            :new.comentarios := :old.comentarios || ' pedido entregado antes de los esperado';
+        end if;
+    end if;
+    
+end;
+/

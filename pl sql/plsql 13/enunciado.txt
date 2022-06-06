@@ -1,0 +1,3 @@
+24. Modifica el anterior pero solo se ejecute si fechaentrega es mayor que fechaespera.
+
+25. Modifica el trigger del video 11 si el stock que vamos a modificar se queda a cero o menor, devolver una excepcion ORA.

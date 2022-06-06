@@ -1,0 +1,32 @@
+1. Mostrar 'Hola mundo' por pantalla.
+
+begin
+
+  DBMS_OUTPUT.PUT_LINE('Hola mundo');
+  
+end;
+/
+
+2. Declarar una variable numerica y mostrar si es mayor de 10 o no.
+
+
+declare
+  mi_numero number(8) := 12;
+begin
+
+  if (mi_numero > 10) then
+    DBMS_OUTPUT.PUT_LINE('Mi numero es mayor de 10');
+  else
+    DBMS_OUTPUT.PUT_LINE('Mi numero es menor de 10');
+  end if;
+
+end;
+/
+3. Declarar una variable numerica y pedir su valor y mostrarlo.
+
+declare
+  mi_numero number(8) := &numero;
+begin
+  DBMS_OUTPUT.PUT_LINE('el valor introducido es ' || mi_numero);
+end;
+/

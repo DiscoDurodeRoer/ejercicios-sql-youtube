@@ -1,0 +1,1 @@
+22. Trigger para actualizar el stock de productos despues de insertar en la tabla de detallepedidos.

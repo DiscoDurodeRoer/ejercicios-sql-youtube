@@ -1,0 +1,8 @@
+16. Crea procedimiento que reciba como parametros de entrada:P_ID_MARCA,P_NUMERO_COCHES. Utiliza un bucle para insertar N registros nuevos en la tabla COCHE. El numero de registros a insertar viene indicado por el parametro P_NUMEROS_COCHES(CONTADOR) y el bucle empezará en 1, los datos a insertar seran:
+
+-matricula='A00'||CONTADOR
+-DESCRIPCION=p_id_marca
+-id_marca=p_id_marca
+-precio_compra=nulo
+
+Controlar excepcion para cuando exista algun coche en la bbdd y se viole la pk

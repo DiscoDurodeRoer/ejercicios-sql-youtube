@@ -1,0 +1,48 @@
+15. crea una funcion a la que le pasaremos como parametros de entrada: MATRICULA, NUEVO_PRECIO_COMPRA. lA FUNCION MODIFICARA LOS DATOS DEL COCHE QUE TENGA LA MATRICULA INTRODUCIDA ACTUALIZANDO EL PRECIO_COMPRA DE LA SIGUIENTE FORMA:
+
+-Si precio_compra es nulo--> hacer un update en el campo precio_compra asignandole el valor de nuevo_precio_compra
+
+-Si no--> hacer un update en el campo precio_compra asignandole el valor de precio_compra+(precio_compra-nuevo_precio_compra)
+
+la funcion devolvera el numero de filas actualizadas
+crea un bloque anonimo que ejecute la funcion anterior y muestre el resultado devuelto por la funcion
+
+create or replace function actualizaPrecioCoche (
+      v_matricula COCHE.MATRICULA%type, 
+      v_nuevo_precio_compra COCHE.PRECIO_COMPRA%type)
+return number
+as
+  v_precio_compra COCHE.PRECIO_COMPRA%type;
+begin
+  
+  select precio_compra into v_precio_compra
+  from coche where matricula = v_matricula;
+  
+  if v_precio_compra is null then
+    update coche
+    set precio_compra = v_nuevo_precio_compra
+    where matricula = v_matricula;
+  else
+    update coche
+    set precio_compra = precio_compra+(precio_compra-v_nuevo_precio_compra)
+    where matricula = v_matricula;
+  end if;
+
+  return SQL%ROWCOUNT;
+
+end;
+/
+
+select * from coche
+
+DECLARE
+    v_matricula COCHE.MATRICULA%type := &matricula;
+    v_nuevo_precio_compra COCHE.PRECIO_COMPRA%type := &nuevo_precio;
+    v_total_filas number(8);
+BEGIN
+  v_total_filas := actualizaPrecioCoche(v_matricula, v_nuevo_precio_compra);
+  
+  DBMS_OUTPUT.put_line('Se han modificado '  || v_total_filas || ' filas');
+
+END;
+/

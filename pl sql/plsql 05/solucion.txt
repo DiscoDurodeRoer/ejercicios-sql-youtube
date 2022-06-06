@@ -1,0 +1,115 @@
+12. Mostrar el nombre de un cliente dado su codigo. Controla en caso de que no se encuentre, mostrando un mensaje por ejemplo.
+
+declare
+  v_codigocliente clientes.codigocliente%type := &codigo;
+  v_nombrecliente clientes.nombrecliente%type;
+begin
+
+  select nombrecliente into v_nombrecliente
+  from clientes
+  where codigocliente = v_codigocliente;
+
+  DBMS_OUTPUT.PUT_LINE('El nombre del cliente es ' || v_nombrecliente);
+
+exception
+  when no_data_found then
+    DBMS_OUTPUT.PUT_LINE('No existe el cliente');
+
+end;
+/
+
+13. Realizar una función que me devuelva la suma de pagos que ha realizado. Pasa el codigo por parametro.  Controla en caso de que no se encuentre, en ese caso devuelve un -1.
+
+create or replace function Pagos_cliente(v_codigocliente clientes.codigocliente%type)
+return Number
+as
+  v_sumapagos pagos.cantidad%type := 0;
+begin
+  
+  select sum(cantidad) into v_sumapagos
+  from pagos
+  where codigocliente = v_codigocliente;
+
+  if v_sumapagos is null then
+    raise no_data_found;
+  else
+    return v_sumapagos;
+  end if;
+exception
+  when no_data_found then
+    return -1;
+
+end;
+/
+
+declare
+  v_codigocliente clientes.codigocliente%type := &codigo;
+  v_suma pagos.cantidad%type;
+begin
+  v_suma := Pagos_cliente(v_codigocliente);
+  if v_suma = -1 then
+    DBMS_OUTPUT.PUT_LINE('El cliente no existe');
+  else
+    DBMS_OUTPUT.PUT_LINE('La suma de pagos es ' || v_suma);
+  end if;
+  
+end;
+/
+
+
+14. Realizar un método o procedimiento que muestre el total en euros de un pedido, pasale el codigo por parametro. Controla en caso de que no se encuentre, en ese caso devuelve un 0. Pasale otro parametro, si supera ese limite, lanzaremos una excepcion propia y devolveremos un 0.
+
+
+create or replace function total_pedido_func(v_codigopedido pedidos.codigopedido%type, v_limite number)
+return number
+as
+  v_total number(8) := 0;
+  limite_superado exception;
+begin
+  
+  select sum(dp.cantidad * dp.PRECIOUNIDAD) into v_total
+  from pedidos p, detallepedidos dp
+  where p.codigopedido = dp.codigopedido and p.codigopedido = v_codigopedido;
+  
+  if v_total is null then
+    raise no_data_found;
+  else
+    if v_limite < v_total then 
+      raise limite_superado;
+    else
+      return v_total;
+    end if;
+  end if;
+  
+
+  
+  
+exception
+  when no_data_found then
+    return -1;
+  when limite_superado then
+    DBMS_OUTPUT.PUT_LINE('Limite superado');
+    return 0;
+
+end;
+/
+
+declare
+  v_codigopedido pedidos.codigopedido%type := &codigo;
+  v_total number(8);
+  v_limite number(8) := &limite;
+begin
+  v_total := total_pedido_func(v_codigopedido , v_limite);
+  
+  if v_total = -1 then
+    DBMS_OUTPUT.PUT_LINE('no existe el pedido');
+  else
+    DBMS_OUTPUT.PUT_LINE('El pedido total es ' || v_total);
+  end if;
+  
+  
+  
+end;
+/
+
+

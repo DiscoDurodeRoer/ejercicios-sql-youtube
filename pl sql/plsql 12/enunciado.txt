@@ -1,0 +1,3 @@
+23 .Crea un trigger que al actualizar la columna fechaentrega de pedidos la compare con la fechaespera.
+Si fechaentrega es menor que fechaespera añadir a los comentarios 'Pedido entregado antes de lo esperado'.
+Si fechaentrega es mayor que fechaespera añadir a los comentarios 'Pedido entregado con retraso'.

@@ -1,0 +1,16 @@
+create or replace trigger productos_actualizar_stock
+after insert on detallepedidos FOR EACH ROW
+declare
+begin
+    update productos
+    set cantidadenstock = cantidadenstock - :new.cantidad
+    where codigoproducto = :new.codigoproducto;
+    
+end;
+/
+
+
+select codigoproducto, nombre, cantidadenstock from productos where codigoproducto = 'FR-4';
+
+insert into detallepedidos values(1, 'FR-4', 10, 10, 6);
+

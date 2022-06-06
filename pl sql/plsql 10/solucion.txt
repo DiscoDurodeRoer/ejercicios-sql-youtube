@@ -1,0 +1,46 @@
+20. Crear un cursor para ver todos los productos pedidos en un pedido. Muestra la cantidad tambien.
+
+
+create or replace procedure mostrarProductosPedido(p_codigopedido pedidos.codigopedido%type)
+as
+cursor prod_pedido is
+select p.nombre, dp.cantidad
+from productos p, detallepedidos dp
+where p.codigoproducto = dp.codigoproducto
+and dp.CODIGOPEDIDO = p_codigopedido;
+begin
+  
+  for registro in prod_pedido loop
+    dbms_output.put_line('Se ha pedido del producto llamado ' || registro.nombre || ': ' || registro.cantidad || ' unidades');
+  end loop;
+  
+end;
+/
+
+declare
+  p_codigopedido pedidos.codigopedido%type := &codigo;
+begin
+  mostrarProductosPedido(p_codigopedido);
+end;
+/
+
+21. Crear un cursor para ver todos los empleados de un jefe.
+
+  dbms_output.put_line('El jefe llamado ' || v_nombre_jefe || ' tiene a cargo a los siguientes empleados: ');
+  for registro in empleados_jefe loop
+    dbms_output.put_line(registro.nombre_empleado);
+  end loop;
+  
+exception 
+  when no_data_found then
+      dbms_output.put_line('No existe ese jefe');
+  
+end;
+/
+
+declare
+  p_codigojefe empleados.codigojefe%type := &codigo;
+begin
+  mostrarEmpleadosJefe(p_codigojefe);
+end;
+/

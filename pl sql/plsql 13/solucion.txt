@@ -1,0 +1,44 @@
+
+--- ej 24
+
+create or replace trigger actualizar_comentarios_pedidos
+before update of fechaentrega on pedidos FOR EACH ROW
+when (new.fechaentrega is not null and new.fechaentrega > old.fechaesperada)
+declare
+begin
+    :new.comentarios := :old.comentarios || ' pedido entregado con retraso';
+end;
+/
+
+
+update pedidos set fechaentrega = to_date('01/01/15') where codigopedido = 1;
+
+
+--- ej 25
+
+create or replace trigger productos_actualizar_stock
+before insert on detallepedidos FOR EACH ROW
+declare
+    v_stock_actual productos.cantidadenstock%type;
+begin
+
+    select cantidadenstock into v_stock_actual 
+    from productos 
+    where codigoproducto = :new.codigoproducto;
+    
+    if v_stock_actual - :new.cantidad > 0 then    
+        update productos
+        set cantidadenstock = cantidadenstock - :new.cantidad
+        where codigoproducto = :new.codigoproducto;
+    else
+        raise_application_error(-20001, 'No hay suficiente stock');
+    end if;
+    
+    
+end;
+/
+
+
+select codigoproducto, nombre, cantidadenstock from productos where codigoproducto = 'FR-4';
+
+insert into detallepedidos values(3, 'FR-4', 1, 10, 6);

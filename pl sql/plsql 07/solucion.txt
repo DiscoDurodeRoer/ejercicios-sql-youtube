@@ -1,0 +1,36 @@
+16. Crea procedimiento que reciba como parametros de entrada:P_ID_MARCA,P_NUMERO_COCHES. Utiliza un bucle para insertar N registros nuevos en la tabla COCHE. El numero de registros a insertar viene indicado por el parametro P_NUMEROS_COCHES(CONTADOR) y el bucle empezará en 1, los datos a insertar seran:
+
+-matricula='A00'||CONTADOR
+-DESCRIPCION=p_id_marca
+-id_marca=p_id_marca
+-precio_compra=nulo
+
+Controlar excepcion para cuando exista algun coche en la bbdd y se viole la pk
+
+create or replace procedure creaCoches(
+  p_id_marca coche.id_marca%type, 
+  p_numero_coches number)
+as 
+
+begin
+    
+    for contador IN 1..p_numero_coches LOOP
+      insert into coche values('A00'||contador, p_id_marca, p_id_marca, null);
+    END LOOP;
+  
+exception
+  when dup_val_on_index then
+    DBMS_OUTPUT.put_line('Registro duplicado');
+
+end;
+/
+
+declare
+  p_id_marca coche.id_marca%type := &id; 
+  p_numero_coches number(8) := &num;
+begin 
+  
+  creaCoches(p_id_marca, p_numero_coches);
+  
+end;
+/

@@ -1,0 +1,8 @@
+15. crea una funcion a la que le pasaremos como parametros de entrada: MATRICULA, NUEVO_PRECIO_COMPRA. lA FUNCION MODIFICARA LOS DATOS DEL COCHE QUE TENGA LA MATRICULA INTRODUCIDA ACTUALIZANDO EL PRECIO_COMPRA DE LA SIGUIENTE FORMA:
+
+-Si precio_compra es nulo--> hacer un update en el campo precio_compra asignandole el valor de nuevo_precio_compra
+
+-Si no--> hacer un update en el campo precio_compra asignandole el valor de precio_compra+(precio_compra-nuevo_precio_compra)
+
+la funcion devolvera el numero de filas actualizadas
+crea un bloque anonimo que ejecute la funcion anterior y muestre el resultado devuelto por la funcion

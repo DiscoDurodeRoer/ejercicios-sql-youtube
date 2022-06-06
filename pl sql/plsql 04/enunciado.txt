@@ -1,0 +1,3 @@
+10. Realizar una función que me devuelva la suma de pagos que ha realizado. Pasa el codigo por parametro.
+
+11. Realizar un método o procedimiento que muestre el total en euros de un pedido, pasale el codigo por parametro.

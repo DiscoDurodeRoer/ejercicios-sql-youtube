@@ -1,0 +1,5 @@
+1. Mostrar 'Hola mundo' por pantalla.
+
+2. Declarar una variable numerica y mostrar si es mayor de 10 o no.
+
+3. Declarar una variable numerica y pedir su valor y mostrarlo.

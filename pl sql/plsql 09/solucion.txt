@@ -1,0 +1,45 @@
+19. Crear un cursor para ver todos los clientes que no hayan hecho pagos. Hazlo con un loop.
+
+
+
+declare
+  v_nombrecliente clientes.nombrecliente%type;
+  cursor clientes_sin_pagos_cursor is 
+    select nombrecliente 
+    from clientes c
+    where not exists(select codigocliente from pagos where codigocliente = c.codigocliente);
+begin
+
+  open clientes_sin_pagos_cursor;
+
+  loop
+    fetch clientes_sin_pagos_cursor into v_nombrecliente;
+    exit when clientes_sin_pagos_cursor%notfound;
+  
+    dbms_output.put_line(v_nombrecliente);
+  
+  end loop;
+
+  close clientes_sin_pagos_cursor;
+
+end;
+/
+
+20. Crear un cursor para ver todos los clientes que no hayan hecho pagos. Hazlo con un for.
+
+
+declare
+  cursor clientes_sin_pagos_cursor is 
+    select nombrecliente 
+    from clientes c
+    where not exists(select codigocliente from pagos where codigocliente = c.codigocliente);
+begin
+
+  for registro in clientes_sin_pagos_cursor loop
+  
+    dbms_output.put_line(registro.nombrecliente);
+  
+  end loop;
+
+end;
+/

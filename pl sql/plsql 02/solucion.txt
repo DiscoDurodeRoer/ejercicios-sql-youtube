@@ -1,0 +1,53 @@
+4. Mostrar los numeros del 1 al 100 con un while.
+
+declare
+  i number(8) := 1;
+begin
+  
+  while (i<=10)
+  loop
+    DBMS_OUTPUT.PUT_LINE(i);
+    i := i+1;
+  end loop;
+
+end;
+/
+
+5. Mostrar los numeros del 1 al 100 con un for.
+
+
+begin
+  
+  for i in 1..10
+  loop
+    DBMS_OUTPUT.PUT_LINE(i);
+  end loop;
+
+end;
+/
+
+-- De 10 a 1
+begin
+  
+  for i in reverse 1..10
+  loop
+    DBMS_OUTPUT.PUT_LINE(i);
+  end loop;
+
+end;
+/
+
+6. Mostrar los numeros del 1 al 100 con un loop.
+
+declare
+  i number(8) := 1;
+begin
+  
+  loop
+    DBMS_OUTPUT.PUT_LINE(i);
+    exit when i=10;
+    i := i+1;
+  end loop;
+
+end;
+/

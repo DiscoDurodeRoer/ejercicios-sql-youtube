@@ -1,0 +1,5 @@
+12. Mostrar el nombre de un cliente dado su codigo. Controla en caso de que no se encuentre, mostrando un mensaje por ejemplo.
+
+13. Realizar una función que me devuelva la suma de pagos que ha realizado. Pasa el codigo por parametro.  Controla en caso de que no se encuentre, en ese caso devuelve un -1.
+
+14. Realizar un método o procedimiento que muestre el total en euros de un pedido, pasale el codigo por parametro. Controla en caso de que no se encuentre, en ese caso devuelve un 0. Pasale otro parametro, si supera ese limite, lanzaremos una excepcion propia y devolveremos un 0.

@@ -1,0 +1,3 @@
+20. Crear un cursor para ver todos los productos pedidos en un pedido. Muestra la cantidad tambien.
+
+21. Crear un cursor para ver todos los empleados de un jefe.

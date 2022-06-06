@@ -1,0 +1,54 @@
+10. Realizar una función que me devuelva la suma de pagos que ha realizado. Pasa el codigo por parametro.
+
+
+create or replace function Pagos_cliente(v_codigocliente clientes.codigocliente%type)
+return Number
+as
+  v_sumapagos pagos.cantidad%type := 0;
+begin
+  
+  select sum(cantidad) into v_sumapagos
+  from pagos
+  where codigocliente = v_codigocliente;
+
+  return v_sumapagos;
+
+end;
+/
+
+declare
+  v_codigocliente clientes.codigocliente%type := &codigo;
+  v_suma pagos.cantidad%type;
+begin
+  v_suma := Pagos_cliente(v_codigocliente);
+  DBMS_OUTPUT.PUT_LINE('La suma de pagos es ' || v_suma);
+  
+end;
+/
+
+
+11. Realizar un método o procedimiento que muestre el total en euros de un pedido, pasale el codigo por parametro.
+
+
+create or replace procedure total_pedido(v_codigopedido pedidos.codigopedido%type)
+as
+  v_total number(8) := 0;
+begin
+  
+  select sum(dp.cantidad * dp.PRECIOUNIDAD) into v_total
+  from pedidos p, detallepedidos dp
+  where p.codigopedido = dp.codigopedido and p.codigopedido = v_codigopedido;
+
+  DBMS_OUTPUT.PUT_LINE('El pedido total es ' || v_total);
+
+end;
+/
+
+declare
+  v_codigopedido pedidos.codigopedido%type := &codigo;
+begin
+  total_pedido(v_codigopedido);
+  
+end;
+/
+

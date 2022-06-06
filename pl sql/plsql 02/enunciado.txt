@@ -1,0 +1,5 @@
+4. Mostrar los numeros del 1 al 100 con un while.
+
+5. Mostrar los numeros del 1 al 100 con un for.
+
+6. Mostrar los numeros del 1 al 100 con un loop.

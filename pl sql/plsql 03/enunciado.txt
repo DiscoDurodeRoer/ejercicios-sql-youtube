@@ -1,0 +1,5 @@
+7. Mostrar el nombre de un cliente dado su codigo.
+
+8. Mostrar el precioVenta y la gama de un producto dado su codigo.
+
+9. Mostrar toda la informacion de un pedido dado su codigo (fechaEsperada, fechaEntrega, fechapedido, estado, comentarios)
