@@ -1,0 +1,66 @@
+4. Crea un procedimiento que muestre el nombre de un cliente a partir de su codigo de cliente.
+
+
+delimiter $$
+
+create procedure getNameClient(p_codigocliente int)
+begin
+	
+    declare nombre varchar(40);
+    
+    select nombrecliente into nombre
+    from clientes
+    where codigocliente = p_codigocliente;
+
+	select nombre;
+
+end$$
+
+delimiter ;
+
+call getNameClient(1);
+
+5. Crea una funcion que devuelva el numero de clientes que tenemos.
+
+
+delimiter $$
+
+create function numClientes()
+returns int
+begin
+	
+    declare numeroClientes int;
+    
+    select count(*) into numeroClientes
+    from clientes;
+   
+	return numeroClientes;
+   
+end$$
+
+delimiter ;
+
+select  numClientes() as num_clientes;
+
+
+6. Crea una función que devuelva el numero de clientes que sea de un pais. Este pais sera pasado por parametro.
+
+delimiter $$
+
+create function numClientesNacionalidad(p_nacionalidad varchar(40))
+returns int
+begin
+	
+    declare numeroClientes int;
+    
+    select count(*) into numeroClientes
+    from clientes
+    where pais = p_nacionalidad;
+   
+	return numeroClientes;
+   
+end$$
+
+delimiter ;
+
+select  numClientesNacionalidad('USA') as num_clientes_nacionalidad;

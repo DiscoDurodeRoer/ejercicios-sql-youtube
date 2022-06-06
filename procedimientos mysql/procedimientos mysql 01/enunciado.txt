@@ -1,0 +1,5 @@
+1. Crea un procedimiento que declare una variable y muestra por pantalla su valor.
+
+2. Declara una función que dandoles dos numeros devuelva la suma.
+
+3. Haz lo mismo que el anterior ejercicio pero con un procedimiento.

@@ -1,0 +1,57 @@
+1. Crea un procedimiento que declare una variable y muestra por pantalla su valor.
+
+delimiter $$
+
+create procedure mostrarVariable()
+begin
+	declare n int;
+	set n = 5;
+
+	select n;
+
+end$$
+
+delimiter ;
+
+call mostrarVariable();
+
+
+2. Declara una función que dandoles dos numeros devuelva la suma.
+
+
+delimiter $$
+
+create function sumaNumeros(num1 int, num2 int)
+returns int
+begin
+	
+    declare suma int;
+    set suma = num1 + num2;
+    
+    return suma;
+
+end$$
+delimiter ;
+
+select sumaNumeros(1,2);
+
+
+select sumaNumeros(1,1);
+
+3. Haz lo mismo que el anterior ejercicio pero con un procedimiento.
+
+
+delimiter $$
+
+create procedure sumaNumeros(num1 int, num2 int)
+begin
+	
+    declare suma int;
+    set  suma= num1 + num2;
+    
+	select suma;
+
+end$$
+delimiter ;
+
+call sumaNumeros(1,1);

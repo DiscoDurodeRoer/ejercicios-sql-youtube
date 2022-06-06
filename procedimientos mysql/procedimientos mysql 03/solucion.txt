@@ -1,0 +1,42 @@
+3. Dado el tipo de un pokemon, mostrar los pokemon que pertenezcan a ese tipo.
+
+
+drop procedure if exists muestraPokemonByTipo;
+delimiter $$
+
+create procedure muestraPokemonByTipo(p_tipo varchar(10))
+begin
+
+	select p.nombre
+	from pokemon p, pokemon_tipo pt, tipo t
+	where p.numero_pokedex = pt.numero_pokedex and pt.id_tipo=t.id_tipo
+	and lower(t.nombre) = trim(lower(p_tipo));
+    
+end$$
+
+delimiter ;
+
+call muestraPokemonByTipo('Normal');
+
+4. Lo mismo que el anterior pero pasandole dos tipos.
+
+drop procedure if exists muestraPokemonByTipos;
+delimiter $$
+
+create procedure muestraPokemonByTipos(p_tipo1 varchar(10), p_tipo2 varchar(10))
+begin
+
+	select nombre
+	from pokemon
+	where numero_pokedex in (select numero_pokedex
+							from pokemon_tipo pt, tipo t
+							where pt.id_tipo=t.id_tipo and lower(t.nombre)=lower(trim(p_tipo1)))
+	and numero_pokedex in (select numero_pokedex
+							from pokemon_tipo pt, tipo t
+							where pt.id_tipo=t.id_tipo and lower(t.nombre)=lower(trim(p_tipo2)));
+    
+end$$
+
+delimiter ;
+
+call muestraPokemonByTipos('bicho', 'veneno');

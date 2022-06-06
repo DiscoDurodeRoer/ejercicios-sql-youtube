@@ -1,0 +1,3 @@
+3. Dado el tipo de un pokemon, mostrar los pokemon que pertenezcan a ese tipo.
+
+4. Lo mismo que el anterior pero pasandole dos tipos.

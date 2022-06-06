@@ -1,0 +1,5 @@
+4. Crea un procedimiento que muestre el nombre de un cliente a partir de su codigo de cliente.
+
+5. Crea una funcion que devuelva el numero de clientes que tenemos.
+
+6. Crea una función que devuelva el numero de clientes que sea de un pais. Este pais sera pasado por parametro.
