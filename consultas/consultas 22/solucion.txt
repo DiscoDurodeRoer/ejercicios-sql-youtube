@@ -1,0 +1,25 @@
+7. Mostrar aquellos pokemon que evolucionan por intercambio.
+
+select p.nombre
+from pokemon p, pokemon_forma_evolucion pfe, 
+forma_evolucion fe, tipo_evolucion te
+where p.numero_pokedex = pfe.numero_pokedex 
+and pfe.id_forma_evolucion = fe.id_forma_evolucion
+and fe.tipo_evolucion = te.id_tipo_evolucion
+and lower(te.tipo_evolucion) = 'intercambio';
+
+
+
+8. Mostrar el nombre del movimiento con mas prioridad.
+
+select nombre
+from movimiento mov
+where prioridad = (select max(prioridad) 
+					from movimiento)
+
+9. Mostrar el pokemon mas pesado.
+
+select nombre, peso
+from pokemon
+where peso = (select max(peso) 
+					from pokemon)

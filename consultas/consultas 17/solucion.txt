@@ -1,0 +1,22 @@
+9. Mostrar el numero de puntos de cada jugador en toda su carrera.
+
+select j.nombre, sum(e.puntos_por_partido) as puntos
+from jugadores j, estadisticas e
+where j.CODIGO = e.jugador
+group by j.nombre
+order by j.nombre;
+
+10. Mostrar el número de jugadores de cada equipo.
+
+--opcion 1
+select j.nombre_equipo, count(*)
+from jugadores j
+group by j.nombre_equipo;
+
+--opcion 2
+select e.nombre, count(*)
+from jugadores j, equipos e
+where j.nombre_equipo = e.nombre
+group by e.nombre;
+
+11. Mostrar el jugador que mas puntos ha realizado en toda su carrera.

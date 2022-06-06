@@ -1,0 +1,7 @@
+5. Mostrar todos los jugadores y su equipo.
+
+6. Mostrar todos los jugadores del equipo "Raptors".
+
+7. Mostrar los puntos por partido de 'Pau Gasol'.
+
+8. Mostrar los puntos por partido de 'Pau Gasol' en la temporada '04/05'.

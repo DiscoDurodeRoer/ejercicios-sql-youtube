@@ -1,0 +1,3 @@
+13. Muestra el codigo y la cantidad de veces que se ha pedido un producto al menos una vez.
+
+14. Muestra el nombre de los clientes de Miami que han realizado algun pedido.

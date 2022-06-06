@@ -1,0 +1,5 @@
+17. Mostrar el partido o partidos (equipo_local, equipo_visitante y diferencia) con mayor diferencia de puntos con una vista. Muestra despues los partidos con mayor diferencia.
+
+18. Mostrar los puntos de cada equipo en los partidos, tanto de local como de visitante. Usa una vista
+
+19. Mostrar quien gana en cada partido (codigo, equipo_local, equipo_visitante, equipo_ganador), en caso de empate sera null.

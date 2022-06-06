@@ -1,0 +1,26 @@
+4. Mostrar los pokemon que son de tipo fuego y volador.
+
+select nombre
+from pokemon
+where numero_pokedex in (select numero_pokedex
+						from pokemon_tipo pt, tipo t
+                        where pt.id_tipo=t.id_tipo and lower(t.nombre)='fuego')
+and numero_pokedex in (select numero_pokedex
+						from pokemon_tipo pt, tipo t
+                        where pt.id_tipo=t.id_tipo and lower(t.nombre)='volador');
+
+5. mostrar los pokemon con una estadistica base de ps mayor que 200
+
+select p.nombre
+from pokemon p, estadisticas_base est
+where p.numero_pokedex=est.numero_pokedex
+and est.ps>=200;
+
+6. mostrar los datos(nombre, peso, altura) de la prevolucion de Arbok.
+
+select p.nombre, p.altura, p.peso
+from pokemon p, evoluciona_de ev
+where p.numero_pokedex = ev.pokemon_origen
+and ev.pokemon_evolucionado = (select numero_pokedex 
+							from pokemon 
+							where LOWER(nombre) = 'arbok')

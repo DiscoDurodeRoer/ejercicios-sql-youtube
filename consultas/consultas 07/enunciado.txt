@@ -1,0 +1,9 @@
+1. Muestra la ciudad y el codigo postal de las oficinas de España.
+
+2. Obtener el nombre y apellidos del jefe de la empresa.
+
+3. Mostrar el nombre y cargo de los empleados que no sean directores de oficina
+
+4. Muestra el número de empleados que hay en la empresa.
+
+5. Muestra el número de clientes norteamericanos.

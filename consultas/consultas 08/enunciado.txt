@@ -1,0 +1,10 @@
+﻿6. Número de clientes de cada país.
+
+7. Muestra el nombre del cliente y el nombre de su representante de ventas (si lo tiene)
+
+8. Nombre de los clientes que hayan hecho un pago en 2007
+
+9. Los posibles estados de un pedido.
+
+10. Muestra el número de pedido, el nombre del cliente, la fecha de entrega y la fecha requerida 
+de los pedidos que no han sido entregados a tiempo.

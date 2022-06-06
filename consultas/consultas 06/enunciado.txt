@@ -1,0 +1,10 @@
+
+
+31. Mostrar la lista de los empleados cuyo salario es mayor o igual que el promedio de la empresa.
+Ordenarlo por departamento.
+32. Hallar los departamentos que tienen más de tres empleados. Mostrar el número de empleados de
+esos departamentos.
+33. Mostrar el código y nombre de cada jefe, junto al número de empleados que dirige. Solo los que tengan mas de dos empleados (2 incluido)
+34. Hallar los departamentos que no tienen empleados
+35. Mostrar el nombre del departamento cuya suma de salarios sea la más alta, indicando el valor de la
+suma.

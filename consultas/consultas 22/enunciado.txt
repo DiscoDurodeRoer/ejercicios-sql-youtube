@@ -1,0 +1,5 @@
+7. Mostrar aquellos pokemon que evolucionan por intercambio.
+
+8. Mostrar el nombre del movimiento con mas prioridad.
+
+9. Mostrar el pokemon mas pesado.

@@ -1,0 +1,5 @@
+7. Ciudades que empiezan por 'a'.
+8. Ciudades que acaban por 's'.
+9. Ciudades del country 61.
+10. Ciudades del country 'Spain'.
+11. Ciudades con nombres compuestos.

@@ -1,0 +1,8 @@
+18. Mostrar el codigo de los pedidos donde se haya vendido 
+el producto de la gama 'Aromáticas' mas caro.
+
+19. Mostrar el codigo de los pedidos donde se hayan 
+vendido mas de 6 productos.
+
+20. Mostrar el codigo de los pedidos donde el precio 
+del pedido sea superior a la media de todos los pedidos.

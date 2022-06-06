@@ -1,0 +1,36 @@
+24. Devolverme la gama de productos mas vendida. Sin vistas
+
+select t.gama, t.cantidad
+from (select p.gama, sum(dp.cantidad) as cantidad
+      from detallepedidos dp, productos p
+      where p.codigoproducto = dp.codigoproducto
+      group by p.gama
+      order by cantidad desc) t
+where rownum = 1;
+
+
+25. Devolverme la gama de productos mas vendida. Usa vistas 
+ 
+create or replace view gamas_vendidas as 
+select p.gama, sum(dp.cantidad) as cantidad
+from detallepedidos dp, productos p
+where p.codigoproducto = dp.codigoproducto
+group by p.gama;
+
+select gv.gama, gv.cantidad
+from gamas_vendidas gv
+where gv.CANTIDAD = (select max(gv.cantidad) 
+                    from gamas_vendidas gv);
+
+26. Muestra el pais(cliente) donde menos pedidos se hacen. 
+
+create or replace view pedidos_paises as
+select c.pais, count(*) as num_pedidos
+from clientes c, info_pedido ip
+where c.nombrecliente = ip.nombrecliente
+group by c.pais;
+
+select pp.pais, pp.num_pedidos
+from PEDIDOS_PAISES pp
+where pp.num_pedidos = (select min(num_pedidos) 
+                        from PEDIDOS_PAISES);

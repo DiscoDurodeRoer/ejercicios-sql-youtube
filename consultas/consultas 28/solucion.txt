@@ -1,0 +1,26 @@
+12. Peliculas con una duracion entre 80 y 100.
+
+SELECT * FROM film where length >= 80 and length <= 100;
+
+-- segunda opcion
+SELECT * FROM film where length between 80 and 100;
+
+13. Peliculas con un rental_rate entre 1 y 3.
+
+SELECT * FROM film where rental_rate >= 1 and rental_rate <= 3;
+
+14. Peliculas con un titulo de más de 12 letras.
+
+SELECT title, length(title) as longitud FROM film where length(title) >= 12;
+
+15. Peliculas con un rating de PG o G.
+
+SELECT * FROM film where rating = 'PG' or rating = 'G'
+
+16. Peliculas que no tengan un rating de NC-17.
+
+SELECT * FROM film where rating <> 'NC-17'
+
+17. Peliculas con un rating PG y duracion de más de 120.
+
+SELECT * FROM film where rating = 'PG' and length >= 120

@@ -1,0 +1,39 @@
+
+1. Obtener los datos completos de los empleados.
+
+select * 
+from empleados;
+
+2. Obtener los datos completos de los departamentos
+
+select * 
+from departamentos;
+
+3. Obtener los datos de los empleados con cargo 'Secretaria'.
+
+select * 
+from empleados 
+where lower(cargoE)='secretaria';
+
+4. Obtener el nombre y salario de los empleados.
+
+select nomemp, salemp 
+from empleados;
+
+5. Obtener los datos de los empleados vendedores, ordenado por nombre.
+
+select * 
+from empleados 
+where lower(cargoE)='vendedor' 
+order by nomEmp asc;
+
+6. Listar el nombre de los departamentos
+
+select distinct nombreDPto 
+from departamentos;
+
+7. Obtener el nombre y cargo de todos los empleados, ordenado por salario
+
+select nomEmp, cargoE, salemp 
+from empleados 
+order by salemp;

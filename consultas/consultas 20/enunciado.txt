@@ -1,0 +1,5 @@
+1. Mostrar el nombre de todos los pokemon
+
+2. mostrar los pokemon que pesen menos de 10k
+
+3. mostrar los pokemon de tipo agua.

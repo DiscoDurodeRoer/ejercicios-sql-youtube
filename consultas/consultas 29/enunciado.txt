@@ -1,0 +1,7 @@
+18. ¿Cuantos actores hay?
+19. ¿Cuantas ciudades tiene el country 'Spain'?
+20. ¿Cuantos countries hay que empiezan por 'a'?
+21. Media de duración de peliculas con PG.
+22. Suma de rental_rate de todas las peliculas.
+23. Pelicula con mayor duración.
+24. Pelicula con menor duración.

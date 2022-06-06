@@ -1,0 +1,6 @@
+12. Peliculas con una duracion entre 80 y 100.
+13. Peliculas con un rental_rate entre 1 y 3.
+14. Peliculas con un titulo de más de 12 letras.
+15. Peliculas con un rating de PG o G.
+16. Peliculas que no tengan un rating de NC-17.
+17. Peliculas con un rating PG y duracion de más de 120.

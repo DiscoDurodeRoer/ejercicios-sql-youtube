@@ -1,0 +1,32 @@
+
+
+8. Listar los salarios y comisiones de los empleados del departamento 2000, ordenado por comisión
+
+select salemp, comisione 
+from empleados 
+order by comisionE;
+
+9. Listar todas las comisiones
+
+select distinct comisione 
+from empleados;
+
+10. Obtener el valor total a pagar que resulta de sumar a los empleados del departamento 3000 una
+bonificación de 500.000, en orden alfabético del empleado
+
+select nomemp, salemp, (salemp+500000) as 'pago estimado'
+from empleados 
+where codDepto = '3000' 
+order by nomemp;
+
+11. Obtener la lista de los empleados que ganan una comisión superior a su sueldo.
+
+select nomemp,salemp,comisione 
+from empleados
+where comisionE > salEmp;
+
+12. Listar los empleados cuya comisión es menor o igual que el 30% de su sueldo.
+
+select nomemp,salemp,comisione 
+from empleados
+where comisionE <= (salEmp*0.3);

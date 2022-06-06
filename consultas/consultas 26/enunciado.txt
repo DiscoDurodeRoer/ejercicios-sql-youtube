@@ -1,0 +1,6 @@
+1. Actores que tienen de primer nombre 'Scarlett'.
+2. Actores que tienen de apellido 'Johansson'.
+3. Actores que contengan una 'O' en su nombre.
+4. Actores que contengan una 'O' en su nombre y en una 'A' en su apellido.
+5. Actores que contengan dos 'O' en su nombre y en una 'A' en su apellido.
+6. Actores donde su tercera letra sea 'B'.

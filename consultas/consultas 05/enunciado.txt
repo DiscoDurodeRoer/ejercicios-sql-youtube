@@ -1,0 +1,7 @@
+
+25. Mostrar el salario más alto de la empresa.
+26. Mostrar cada una de las comisiones y el número de empleados que las reciben. Solo si tiene comision.
+27. Mostrar el nombre del último empleado de la lista por orden alfabético.
+28. Hallar el salario más alto, el más bajo y la diferencia entre ellos.
+29. Mostrar el número de empleados de sexo femenino y de sexo masculino, por departamento.
+30. Hallar el salario promedio por departamento.

@@ -1,0 +1,13 @@
+13. Muestra el codigo y la cantidad de veces que se ha pedido un producto al menos una vez.
+
+select p.codigoproducto, sum(dp.cantidad) as "cantidad pedida"
+from productos p, detallepedidos dp
+where p.codigoproducto = dp.codigoproducto
+group by p.codigoproducto;
+
+14. Muestra el nombre de los clientes de Miami que han realizado algun pedido.
+
+select distinct  c.nombrecliente
+from clientes c, pedidos p
+where c.codigocliente=p.codigocliente
+and trim(lower(c.ciudad))='miami';

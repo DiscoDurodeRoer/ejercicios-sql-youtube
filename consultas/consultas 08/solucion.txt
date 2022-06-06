@@ -1,0 +1,30 @@
+﻿6. Número de clientes de cada país.
+
+select pais, count(*) as "Num clientes"  from clientes group by pais;
+
+7. Muestra el nombre del cliente y el nombre de su representante de ventas (si lo tiene)
+
+select c.nombrecliente as "Nombre cliente", e.nombre as "Nombre representante" 
+from clientes c, empleados e 
+where c.codigoempleadorepventas=e.CODIGOEMPLEADO; 
+
+8. Nombre de los clientes que hayan hecho un pago en 2007
+
+select distinct c.nombrecliente
+from clientes c, pagos p
+where c.CODIGOCLIENTE=p.CODIGOCLIENTE
+and p.FECHAPAGO like '%/07';
+
+9. Los posibles estados de un pedido.
+
+select distinct lower(estado)
+from pedidos
+
+10. Muestra el número de pedido, el nombre del cliente, la fecha de entrega y la fecha requerida 
+de los pedidos que no han sido entregados a tiempo.
+
+select p.codigopedido, c.nombrecliente, p.fechaentrega, p.fechaesperada
+from clientes c, pedidos p
+where c.codigocliente = p.CODIGOCLIENTE 
+and p.FECHAESPERADA < p.fechaentrega;
+

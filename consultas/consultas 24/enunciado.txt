@@ -1,0 +1,5 @@
+11. Mostrar todos los movimientos que aprende pikachu.
+
+12. Mostrar todos los movimientos que aprende pikachu por MT.
+
+13. Mostrar todos los movimientos de tipo normal que aprende pikachu por nivel.

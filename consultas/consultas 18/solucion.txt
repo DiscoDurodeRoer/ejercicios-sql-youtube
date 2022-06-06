@@ -1,0 +1,43 @@
+13. Mostrar el nombre del equipo, conferencia y division del jugador mas alto de la NBA.
+
+select j.nombre as jugador, e.nombre as equipo, e.conferencia, e.division
+from equipos e, jugadores j
+where e.nombre = j.nombre_equipo
+and j.altura=(select max(altura)
+              from jugadores)
+
+14. Mostrar la suma de los puntos por partido de todos los jugadores españoles donde el equipo donde juegan este en 'Los Angeles'.
+
+select sum(puntos_por_partido) as puntos
+from estadisticas
+where jugador = (select codigo
+                  from jugadores
+                  where lower(procedencia) = 'spain'
+                  and nombre_equipo in (select nombre
+                                            from equipos
+                                            where lower(ciudad) = 'los angeles'))
+
+15. Mostrar la media de puntos en partidos de los equipos de la division Pacific.
+
+select avg(puntos)
+from (select sum(puntos_local) as puntos
+      from PARTIDOS
+      where equipo_local in (select nombre
+                              from equipos
+                              where lower(DIVISION) = 'pacific')
+      union
+      select sum(puntos_visitante) as puntos
+      from PARTIDOS
+      where equipo_visitante in (select nombre
+                              from equipos
+                              where lower(DIVISION) = 'pacific')) t
+
+16. Mostrar el partido o partidos (equipo_local, equipo_visitante y diferencia) con mayor diferencia de puntos.
+
+select equipo_local, equipo_visitante, diferencia
+from (select  equipo_local, 
+              equipo_visitante, 
+              abs(puntos_local - puntos_visitante) as diferencia
+      from partidos)
+where diferencia = (select max(abs(puntos_local - puntos_visitante))
+                    from partidos)

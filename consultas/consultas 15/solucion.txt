@@ -1,0 +1,32 @@
+1. Mostrar el nombre de todos los jugadores ordenados alfabeticamente.
+
+select nombre
+from jugadores
+order by nombre;
+
+2. Mostrar el nombre de los jugadores que sean pivots con mas de 200 libras
+
+select nombre
+from jugadores
+where posicion like '%C%' and peso>200
+order by nombre;
+
+3. Mostrar el nombre de todos los equipos ordenados alfabeticamente.
+
+select nombre
+from equipos
+order by nombre;
+
+4. Mostrar el nombre de los equipos del este.
+
+select nombre
+from equipos
+where lower(conferencia) = 'east'
+order by nombre;
+
+5. Mostrar los equipos donde su ciudad empieza por c.
+
+select nombre
+from equipos
+where lower(ciudad) like 'c%'
+order by nombre;

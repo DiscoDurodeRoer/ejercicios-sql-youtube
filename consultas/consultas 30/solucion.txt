@@ -1,0 +1,27 @@
+25. Mostrar las ciudades del country Spain (multitabla).
+
+select co.country, c.city
+from city c, country co
+where c.country_id = co.country_id
+
+26. Mostrar el nombre de la película y el nombre de los actores.
+
+select f.title, a.first_name, a.last_name
+from film f, actor a, film_actor fa
+where f.film_id = fa.film_id and a.actor_id = fa.actor_id
+order by f.title
+
+27. Mostrar el nombre de la película y el de sus categorías.
+
+select f.title, c.name as category
+from film f, category c, film_category ca
+where f.film_id = ca.film_id and c.category_id = ca.category_id
+order by f.title
+
+28. Mostrar el country, la ciudad y dirección de cada miembro del staff.
+
+select co.country, c.city, a.address, a.address2, s.first_name, s.last_name
+from country co, city c, address a, staff s
+where co.country_id = c.country_id and a.city_id = c.city_id and s.address_id = a.address_id
+
+29. Mostrar el country, la ciudad y dirección de cada customer.

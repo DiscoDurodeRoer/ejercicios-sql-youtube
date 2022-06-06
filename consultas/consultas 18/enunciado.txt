@@ -1,0 +1,7 @@
+13. Mostrar el nombre del equipo, conferencia y division del jugador mas alto de la NBA.
+
+14. Mostrar la suma de los puntos por partido de todos los jugadores españoles donde el equipo donde juegan este en 'Los Angeles'.
+
+15. Mostrar la media de puntos en partidos de los equipos de la division Pacific.
+
+16. Mostrar el partido o partidos (equipo_local, equipo_visitante y diferencia) con mayor diferencia de puntos.

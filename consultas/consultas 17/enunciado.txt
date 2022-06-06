@@ -1,0 +1,5 @@
+10. Mostrar el numero de puntos de cada jugador en toda su carrera.
+
+11. Mostrar el número el jugadores de cada equipo.
+
+12. Mostrar el jugador que mas puntos ha realizado en toda su carrera.

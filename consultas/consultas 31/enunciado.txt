@@ -1,0 +1,3 @@
+30. Numero de peliculas de cada rating
+31. Cuantas peliculas ha realizado el actor ED CHASE
+32. Media de duracion de las peliculas cada categoria.

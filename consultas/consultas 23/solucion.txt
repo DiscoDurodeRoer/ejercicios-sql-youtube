@@ -1,0 +1,21 @@
+10. Mostrar el nombre y tipo del ataque con mas potencia.
+
+select m.nombre as movimiento,t.nombre as tipo, m.potencia
+from movimiento m, tipo t
+where m.id_tipo = t.id_tipo
+and m.potencia = (select max(potencia) 
+					from movimiento)
+
+11. Mostrar el numero de movimientos de cada tipo.
+
+select t.nombre as tipo, count(*) as num_mov
+from tipo t, movimiento m
+where m.id_tipo = t.id_tipo
+group by t.nombre;
+
+12. Mostrar todos los movimientos que puedan envenenar.
+
+select m.nombre, mes.probabilidad
+from movimiento m, movimiento_efecto_secundario mes, efecto_secundario es
+where m.id_movimiento = mes.id_movimiento and mes.id_efecto_secundario = es.id_efecto_secundario
+and lower(es.efecto_secundario) like '%envenena%'

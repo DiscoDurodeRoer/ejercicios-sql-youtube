@@ -1,0 +1,5 @@
+25. Mostrar las ciudades del country Spain (multitabla).
+26. Mostrar el nombre de la película y el nombre de los actores.
+27. Mostrar el nombre de la película y el de sus categorías.
+28. Mostrar el country, la ciudad y dirección de cada miembro del staff.
+29. Mostrar el country, la ciudad y dirección de cada customer.

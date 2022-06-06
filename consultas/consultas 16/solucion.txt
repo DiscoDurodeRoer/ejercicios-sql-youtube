@@ -1,0 +1,43 @@
+6. Mostrar todos los jugadores y su equipo ordenado por nombre del equipo.
+
+--opcion 1
+select j.nombre as jugador, e.nombre as equipo
+from jugadores j, equipos e
+where j.nombre_equipo = e.nombre
+order by e.nombre, j.nombre;
+
+--opcion 2
+select j.nombre, j.nombre_equipo
+from jugadores j
+order by j.nombre_equipo,j.nombre;
+
+
+7. Mostrar todos los jugadores del equipo "Raptors".
+
+--Opcion 1
+select j.nombre as jugador, e.nombre as equipo
+from jugadores j, equipos e
+where j.nombre_equipo = e.nombre
+and  lower(e.nombre) = 'raptors'
+order by e.nombre, j.nombre;
+
+--Opcion 2
+select j.nombre, j.nombre_equipo
+from jugadores j
+where lower(j.nombre_equipo) = 'raptors'
+order by j.nombre_equipo,j.nombre;
+
+8. Mostrar los puntos por partido de 'Pau Gasol'.
+
+select puntos_por_partido
+from estadisticas e, jugadores j
+where e.jugador = j.codigo
+and lower(j.nombre) = 'pau gasol'
+
+9. Mostrar los puntos por partido de 'Pau Gasol' en la temporada '04/05'.
+
+select puntos_por_partido
+from estadisticas e, jugadores j
+where e.jugador = j.codigo
+and lower(j.nombre) = 'pau gasol'
+and temporada = '04/05'

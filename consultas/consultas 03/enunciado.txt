@@ -1,0 +1,13 @@
+
+13.Elabore un listado donde para cada fila, figure ‘Nombre’ y ‘Cargo’ antes del valor respectivo para cada empleado.
+14. Hallar el salario y la comisión de aquellos empleados cuyo número de documento de identidad es
+superior al '19.709.802'
+15. Muestra los empleados cuyo nombre empiece entre las letras J y Z (rango).
+Liste estos empleados y su cargo por orden alfabético.
+16. Listar el salario, la comisión, el salario total (salario + comisión), documento de identidad del
+empleado y nombre, de aquellos empleados que tienen comisión superior a 1.000.000, ordenar el
+informe por el número del documento de identidad
+17. Obtener un listado similar al anterior, pero de aquellos empleados que NO tienen comisión
+18. Hallar los empleados cuyo nombre no contiene la cadena "MA"
+19. Obtener los nombres de los departamentos que no sean “Ventas” ni “Investigación” NI
+'MANTENIMIENTO', ordenados por ciudad.

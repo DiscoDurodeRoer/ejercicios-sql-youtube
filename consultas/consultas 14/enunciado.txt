@@ -1,0 +1,5 @@
+24. Devolver la gama de productos mas vendida. Sin vistas
+
+25. Devolver la gama de productos mas vendida. Usa vistas 
+ 
+26. Muestra el pais(cliente) donde menos pedidos se hacen. Usa una vista. 

@@ -1,0 +1,5 @@
+10. Mostrar el nombre y tipo del ataque con mas potencia.
+
+11. Mostrar el numero de movimientos de cada tipo.
+
+12. Mostrar todos los movimientos que puedan envenenar.

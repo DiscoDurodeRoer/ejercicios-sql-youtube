@@ -1,0 +1,20 @@
+15. Mostrar el precio final de cada pedido.
+
+select p.codigopedido, sum(dp.cantidad * dp.PRECIOUNIDAD) as total
+from pedidos p, detallepedidos dp
+where p.codigopedido = dp.codigopedido
+group by p.codigopedido;
+
+16. Mostrar lo que ha pagado cada cliente.
+
+select nombrecliente, sum(p.cantidad) as total_pagado
+from clientes c, pagos p
+where c.codigocliente=p.codigocliente
+group by c.nombrecliente;
+
+17. Mostrar el numero de productos de cada gama.
+
+select p.gama, count(*) as numero_productos
+from productos p, gamasproductos gp
+where p.gama = gp.gama
+group by p.gama;

@@ -1,0 +1,47 @@
+
+
+31. Mostrar la lista de los empleados cuyo salario es mayor o igual que el promedio de la empresa.
+Ordenarlo por departamento.
+
+select nDIEmp, salEmp 
+from empleados 
+where salemp >= (select avg(salemp)
+				from empleados);
+
+32. Hallar los departamentos que tienen más de tres empleados. Mostrar el número de empleados de
+esos departamentos.
+
+select d.codDepto, d.nombreDpto, count(*) as 'Num empleados' 
+from departamentos d, empleados e 
+where d.codDepto=e.codDepto 
+group by d.codDepto 
+having count(*) >= 3;
+
+
+33. Mostrar el código y nombre de cada jefe, junto al número de empleados que dirige. Solo los que tengan mas de dos empleados y ordenados de mayor a menor.
+
+select j.nDIEmp, j.nomEmp, count(*) as 'Num Empleados' 
+from empleados e, empleados j 
+where e.jefeID=j.nDIEmp 
+group by j.nomEmp 
+having count(*)>=2 
+order by count(*) desc;
+
+
+34. Hallar los departamentos que no tienen empleados
+
+select d.codDepto, d.nombreDpto 
+from departamentos d, empleados e 
+where d.codDepto=e.codDepto 
+group by d.codDepto 
+having count(*) = 0;
+
+35. Mostrar el nombre del departamento cuya suma de salarios sea la más alta, indicando el valor de la
+suma.
+
+select d.nombreDpto, sum(e.salEmp) 
+from departamentos d, empleados e 
+where d.codDepto=e.codDepto 
+group by d.nombreDpto 
+order by  sum(e.salEmp) desc 
+limit 1;

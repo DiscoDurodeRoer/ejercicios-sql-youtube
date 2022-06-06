@@ -1,0 +1,5 @@
+21. Realiza una vista que muestre los datos de un empleado (nombre, apellidos, ciudad de la oficina) y lo mismo para su jefe (en la misma fila).
+
+22. Realiza una vista que muestre el codigo de pedido y su total en euros.
+
+23. Realiza una vista con la información del pedido (codigo, fechapedido, fechaesperada, fechaentrega, nombre cliente y total en euros) ordenado por total de forma descendente.

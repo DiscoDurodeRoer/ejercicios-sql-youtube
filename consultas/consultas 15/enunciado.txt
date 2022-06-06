@@ -1,0 +1,7 @@
+1. Mostrar el nombre de todos los jugadores ordenados alfabeticamente.
+
+2. Mostrar el nombre de los jugadores que sean pivots con mas de 200 libras
+
+3. Mostrar el nombre de todos los equipos ordenados alfabeticamente.
+
+4. Mostrar el nombre de los equipos del este.

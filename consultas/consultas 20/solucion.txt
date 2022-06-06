@@ -1,0 +1,28 @@
+1. Mostrar el nombre de todos los pokemon
+
+select nombre
+from pokemon;
+
+2. mostrar los pokemon que pesen menos de 10k
+
+select nombre
+from pokemon
+where peso <=10;
+
+3. mostrar los pokemon de tipo agua.
+
+-- sin subconsulta
+
+select p.nombre
+from pokemon p, pokemon_tipo pt, tipo t
+where p.numero_pokedex = pt.numero_pokedex and pt.id_tipo=t.id_tipo
+and lower(t.nombre) = 'agua';
+
+-- con subconsulta
+
+select p.nombre
+from pokemon p, pokemon_tipo pt
+where p.numero_pokedex = pt.numero_pokedex
+and pt.id_tipo = (select id_tipo 
+					from tipo t 
+                    where lower(t.nombre) = 'agua');

@@ -1,0 +1,36 @@
+18. Mostrar el codigo de los pedidos donde se haya vendido el producto de la gama 'Aromáticas' mas caro.
+
+select distinct pe.codigopedido
+from pedidos pe, detallepedidos dp
+where pe.codigopedido = dp.codigopedido
+and dp.codigoproducto in (select codigoproducto
+                          from productos 
+                          where precioventa = (select max(precioventa)
+                                              from productos p, gamasproductos g
+                                              where p.gama = g.gama
+                                              and lower(g.gama) = 'aromáticas'))
+
+19. Mostrar el codigo de los pedidos donde se hayan vendido mas de 6 productos.
+
+select pe.codigopedido
+from pedidos pe, detallepedidos dp
+where pe.codigopedido = dp.codigopedido
+group by pe.codigopedido
+having count(*)>=6
+
+
+20. Mostrar el codigo de los pedidos donde el precio del pedido sea superior a la media de todos los pedidos.
+
+select pe.codigopedido
+from pedidos pe
+where 
+(select sum(dp.cantidad * dp.PRECIOUNIDAD) as total
+      from pedidos p, detallepedidos dp
+      where p.codigopedido = dp.codigopedido and pe.codigopedido = p.codigopedido
+      group by p.codigopedido)
+>
+(select avg(t.total)
+from (select p.codigopedido, sum(dp.cantidad * dp.PRECIOUNIDAD) as total
+      from pedidos p, detallepedidos dp
+      where p.codigopedido = dp.codigopedido
+      group by p.codigopedido) t)

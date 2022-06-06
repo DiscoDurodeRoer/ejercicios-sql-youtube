@@ -1,0 +1,5 @@
+14. Mostrar todos los pokemon que evolucionan por piedra. Hacer una vista de ello.
+
+15. Mostrar todos los pokemon que no pueden evolucionar. Hacer una vista de ello.
+
+16. Mostrar la cantidad de los pokemon de cada tipo. Hacer una vista de ello.

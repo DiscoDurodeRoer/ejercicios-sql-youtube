@@ -1,0 +1,35 @@
+21. Realiza una vista que muestre los datos de un empleado (nombre, apellidos, ciudad de la oficina) y lo mismo para su jefe (en la misma fila).
+
+create or replace view empleados_jefes as
+select e_subor.nombre as nombre_subor, 
+        e_subor.apellido1 || ' ' || e_subor.apellido2 as apellidos_subor,
+        o_subor.ciudad as ciudad_subor,
+        e_jefe.nombre as nombre_jefe, 
+        e_jefe.apellido1 || ' ' || e_jefe.apellido2 as apellidos_jefe,
+        o_subor.ciudad as ciudad_jefe
+from empleados e_subor, empleados e_jefe, oficinas o_subor, oficinas o_jefe
+where e_subor.codigojefe = e_jefe.codigoempleado
+and o_subor.codigooficina = e_subor.codigooficina
+and e_jefe.codigooficina = o_jefe.CODIGOOFICINA
+
+22. Realiza una vista que muestre el codigo de pedido y su total en euros.
+
+create or replace view pedidos_total as
+select p.codigopedido, sum(dp.cantidad * dp.PRECIOUNIDAD) as total
+from pedidos p, detallepedidos dp
+where p.codigopedido = dp.codigopedido
+group by p.codigopedido;
+
+23. Realiza una vista con la información del pedido (codigo, fechapedido, fechaesperada, fechaentrega, nombre cliente y total en euros) ordenado por total de forma descendente.
+
+create or replace view info_pedido as 
+select p.codigopedido, 
+        p.fechapedido, 
+        p.fechaesperada, 
+        p.fechaentrega,
+        c.nombrecliente,
+        pt.total
+from pedidos p, clientes c, PEDIDOS_TOTAL pt
+where p.CODIGOCLIENTE = c.CODIGOCLIENTE
+and pt.CODIGOPEDIDO = p.CODIGOPEDIDO
+order by pt.total desc;

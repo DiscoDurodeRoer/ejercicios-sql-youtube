@@ -1,0 +1,8 @@
+
+1. Obtener los datos completos de los empleados.
+2. Obtener los datos completos de los departamentos
+3. Obtener los datos de los empleados con cargo 'Secretaria'.
+4. Obtener el nombre y salario de los empleados.
+5. Obtener los datos de los empleados vendedores, ordenado por nombre.
+6. Listar el nombre de los departamentos
+7. Obtener el nombre y cargo de todos los empleados, ordenado por salario

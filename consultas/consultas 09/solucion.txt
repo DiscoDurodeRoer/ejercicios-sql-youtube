@@ -1,0 +1,13 @@
+11. Muestra el codigo, nombre y gama de los productos que nunca se han pedido (detalle pedidos).
+
+select p.codigoproducto, p.nombre, p.gama
+from productos p, GAMASPRODUCTOS g
+where p.gama=g.gama
+and not exists (select CODIGOPRODUCTO from detallepedidos where codigoproducto=p.CODIGOPRODUCTO)
+
+12. Muestra el nombre y apellidos de los empleados que trabajan en Barcelona.
+
+select e.nombre, e.apellido1 || ' ' || e.apellido2
+from empleados e, oficinas o
+where e.codigooficina = o.codigooficina
+and trim(lower(o.ciudad)) = 'barcelona';

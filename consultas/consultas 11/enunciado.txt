@@ -1,0 +1,5 @@
+15. Mostrar el precio final de cada pedido.
+
+16. Mostrar lo que ha pagado cada cliente.
+
+17. Mostrar el numero de productos de cada gama.
