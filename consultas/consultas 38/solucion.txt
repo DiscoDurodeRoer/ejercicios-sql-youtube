@@ -1,0 +1,59 @@
+28. Devuelve un listado con los nombres de los fabricantes donde la suma del precio de todos sus productos es superior a 1000 €.
+
+select f.nombre, sum(p.precio)
+from producto p, fabricante f
+where p.codigo_fabricante = f.codigo
+group by f.nombre
+having sum(p.precio) > 1000;
+
+29. Devuelve un listado con el nombre del producto más caro que tiene cada fabricante. El resultado debe tener tres columnas: nombre del producto, precio y nombre del fabricante. El resultado tiene que estar ordenado alfabéticamente de menor a mayor por el nombre del fabricante.
+
+select f.nombre, p.precio, p.nombre
+from producto p, fabricante f
+where p.codigo_fabricante = f.codigo
+and p.precio = (select max(precio) from producto where codigo_fabricante = p.codigo_fabricante)
+order by f.nombre;
+
+--- Subconsultas (En la cláusula WHERE) 
+-- Con operadores básicos de comparación:
+1. Devuelve todos los productos del fabricante Lenovo. (Sin utilizar INNER JOIN).
+
+select * from producto where codigo_fabricante = (select codigo from fabricante where upper(nombre) = 'LENOVO');
+
+2. Devuelve todos los datos de los productos que tienen el mismo precio que el producto más caro del fabricante Lenovo. (Sin utilizar INNER JOIN).
+
+select * from producto 
+where precio = (select max(precio) 
+                from producto 
+                where codigo_fabricante = (select codigo from fabricante where upper(nombre) = 'LENOVO'))
+
+3. Lista el nombre del producto más caro del fabricante Lenovo.
+
+select nombre from producto 
+where precio = (select max(precio) 
+                from producto 
+                where codigo_fabricante = (select codigo from fabricante where upper(nombre) = 'LENOVO'))
+and codigo_fabricante = (select codigo from fabricante where upper(nombre) = 'LENOVO');
+
+4. Lista el nombre del producto más barato del fabricante Hewlett-Packard.
+
+select nombre from producto 
+where precio = (select min(precio) 
+                from producto 
+                where codigo_fabricante = (select codigo from fabricante where upper(nombre) = 'HEWLETT-PACKARD'))
+and codigo_fabricante = (select codigo from fabricante where upper(nombre) = 'HEWLETT-PACKARD');
+
+5. Devuelve todos los productos de la base de datos que tienen un precio mayor o igual al producto más caro del fabricante Lenovo.
+
+select * from producto 
+where precio >= (select max(precio) 
+                from producto 
+                where codigo_fabricante = (select codigo from fabricante where upper(nombre) = 'LENOVO'));
+
+6. Lista todos los productos del fabricante Asus que tienen un precio superior al precio medio de todos sus productos.
+
+select * from producto 
+where codigo_fabricante = (select codigo from fabricante where upper(nombre) = 'ASUS')
+and precio > (select avg(precio) 
+                from producto 
+                where codigo_fabricante = (select codigo from fabricante where upper(nombre) = 'ASUS'));

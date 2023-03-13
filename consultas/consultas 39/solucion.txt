@@ -1,0 +1,70 @@
+-- Subconsultas con ALL y ANY:
+
+7. Subconsultas (En la cláusula HAVING). Devuelve un listado con todos los nombres de los fabricantes que tienen el mismo número de productos que el fabricante Lenovo.
+
+select f.nombre, count(*)
+from producto p, fabricante f
+where p.codigo_fabricante = f.codigo
+group by f.nombre
+having count(*) = (select count(*) 
+                    from producto 
+                    where codigo_fabricante = (select codigo from fabricante where upper(nombre)='LENOVO'));
+
+8. Devuelve el producto más caro que existe en la tabla producto sin hacer uso de MAX, ORDER BY ni LIMIT.
+
+select * from producto where precio >= ALL(select precio from producto);
+
+9. Devuelve el producto más barato que existe en la tabla producto sin hacer uso de MIN, ORDER BY ni LIMIT.
+
+select * from producto where precio <= ALL(select precio from producto);
+
+10. Devuelve los nombres de los fabricantes que tienen productos asociados. (Utilizando ALL o ANY).
+
+select nombre from fabricante where codigo = ANY(select codigo_fabricante from producto);
+
+11. Devuelve los nombres de los fabricantes que no tienen productos asociados. (Utilizando ALL o ANY).
+
+select nombre from fabricante where codigo <> ALL(select codigo_fabricante from producto);
+
+-- Subconsultas con IN y NOT IN:
+
+12. Devuelve los nombres de los fabricantes que tienen productos asociados. (Utilizando IN o NOT IN).
+
+select * from fabricante where codigo IN (select codigo_fabricante from producto);
+
+13. Devuelve los nombres de los fabricantes que no tienen productos asociados. (Utilizando IN o NOT IN).
+
+select * from fabricante where codigo NOT IN (select codigo_fabricante from producto);
+
+-- Subconsultas con EXISTS y NOT EXISTS:
+
+14. Devuelve los nombres de los fabricantes que tienen productos asociados. (Utilizando EXISTS o NOT EXISTS).
+
+select * from fabricante f where EXISTS (select codigo_fabricante from producto where codigo_fabricante = f.codigo)
+
+15. Devuelve los nombres de los fabricantes que no tienen productos asociados. (Utilizando EXISTS o NOT EXISTS).
+
+select * from fabricante f where NOT EXISTS (select codigo_fabricante from producto where codigo_fabricante = f.codigo);
+
+-- Subconsultas relacionadas:
+
+16. Lista el nombre de cada fabricante con el nombre y el precio de su producto más caro.
+
+select f.nombre, p.precio, p.nombre
+from producto p, fabricante f
+where p.codigo_fabricante = f.codigo
+and p.precio = (select max(precio) from producto where codigo_fabricante = p.codigo_fabricante);
+
+17. Devuelve un listado de todos los productos que tienen un precio mayor o igual a la media de todos los productos de su mismo fabricante.
+
+select *
+from producto p
+where precio >= (select avg(precio) from producto where codigo_fabricante = p.codigo_fabricante)
+
+18. Lista el nombre del producto más caro del fabricante Lenovo.
+
+select nombre from producto 
+where precio = (select max(precio) 
+                from producto 
+                where codigo_fabricante = (select codigo from fabricante where upper(nombre) = 'LENOVO'))
+and codigo_fabricante = (select codigo from fabricante where upper(nombre) = 'LENOVO');

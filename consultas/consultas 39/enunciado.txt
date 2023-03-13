@@ -1,0 +1,22 @@
+-- Subconsultas con ALL y ANY:
+
+7. Subconsultas (En la cláusula HAVING). Devuelve un listado con todos los nombres de los fabricantes que tienen el mismo número de productos que el fabricante Lenovo.
+8. Devuelve el producto más caro que existe en la tabla producto sin hacer uso de MAX, ORDER BY ni LIMIT.
+9. Devuelve el producto más barato que existe en la tabla producto sin hacer uso de MIN, ORDER BY ni LIMIT.
+10. Devuelve los nombres de los fabricantes que tienen productos asociados. (Utilizando ALL o ANY).
+11. Devuelve los nombres de los fabricantes que no tienen productos asociados. (Utilizando ALL o ANY).
+
+-- Subconsultas con IN y NOT IN:
+
+12. Devuelve los nombres de los fabricantes que tienen productos asociados. (Utilizando IN o NOT IN).
+13. Devuelve los nombres de los fabricantes que no tienen productos asociados. (Utilizando IN o NOT IN).
+-- Subconsultas con EXISTS y NOT EXISTS:
+
+14. Devuelve los nombres de los fabricantes que tienen productos asociados. (Utilizando EXISTS o NOT EXISTS).
+15. Devuelve los nombres de los fabricantes que no tienen productos asociados. (Utilizando EXISTS o NOT EXISTS).
+
+-- Subconsultas relacionadas:
+
+16. Lista el nombre de cada fabricante con el nombre y el precio de su producto más caro.
+17. Devuelve un listado de todos los productos que tienen un precio mayor o igual a la media de todos los productos de su mismo fabricante.
+18. Lista el nombre del producto más caro del fabricante Lenovo.

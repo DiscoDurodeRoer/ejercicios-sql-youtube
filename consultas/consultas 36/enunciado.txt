@@ -1,0 +1,19 @@
+-- Consultas resumen
+
+1. Calcula el número total de productos que hay en la tabla productos.
+2. Calcula el número total de fabricantes que hay en la tabla fabricante.
+3. Calcula el número de valores distintos de código de fabricante aparecen en la tabla productos.
+4. Calcula la media del precio de todos los productos.
+5. Calcula el precio más barato de todos los productos.
+6. Calcula el precio más caro de todos los productos.
+7. Lista el nombre y el precio del producto más barato.
+8. Lista el nombre y el precio del producto más caro.
+9. Calcula la suma de los precios de todos los productos.
+10. Calcula el número de productos que tiene el fabricante Asus.
+11. Calcula la media del precio de todos los productos del fabricante Asus.
+12. Calcula el precio más barato de todos los productos del fabricante Asus.
+13. Calcula el precio más caro de todos los productos del fabricante Asus.
+14. Calcula la suma de todos los productos del fabricante Asus.
+15. Muestra el precio máximo, precio mínimo, precio medio y el número total de productos que tiene el fabricante Crucial.
+16. Muestra el número total de productos que tiene cada uno de los fabricantes.El listado también debe incluir los fabricantes que no tienen ningún producto. El resultado mostrará dos columnas, una con el nombre del fabricante y otra con el número de productos que tiene. Ordene el resultado descendentemente por el número de productos.
+17. Muestra el precio máximo, precio mínimo y precio medio de los productos de cada uno de los fabricantes. El resultado mostrará el nombre del fabricante junto con los datos que se solicitan.

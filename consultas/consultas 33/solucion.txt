@@ -1,0 +1,49 @@
+16. Devuelve una lista con las 5 primeras filas de la tabla fabricante.
+
+select * from producto where rownum <= 5;
+
+17. Devuelve una lista con 2 filas a partir de la cuarta fila de la tabla fabricante. La cuarta fila también se debe incluir en la respuesta.
+
+select codigo, nombre from 
+(select rownum as rn, codigo, nombre from fabricante)
+where rn >= 4 and rn <= 5;
+
+18. Lista el nombre y el precio del producto más barato. (Utilice solamente las cláusulas ORDER BY y ROWNUM).
+
+select nombre, precio 
+from (select nombre, precio from producto order by precio) 
+where rownum <=1;
+
+19. Lista el nombre y el precio del producto más caro. (Utilice solamente las cláusulas ORDER BY y ROWNUM)
+
+select nombre, precio 
+from (select nombre, precio from producto order by precio desc) 
+where rownum <=1;
+
+20. Lista el nombre de todos los productos del fabricante cuyo código de fabricante es igual a 2.
+
+select nombre from producto where codigo_fabricante = 2;
+
+21. Lista el nombre de los productos que tienen un precio menor o igual a 120€.
+
+select nombre from producto where precio <= 120;
+
+22. Lista el nombre de los productos que tienen un precio mayor o igual a 400€.
+
+select nombre from producto where precio >= 400;
+
+23. Lista el nombre de los productos que no tienen un precio mayor o igual a 400€.
+
+select nombre from producto where not precio >= 400;
+
+24. Lista todos los productos que tengan un precio entre 80€ y 300€. Sin utilizar el operador BETWEEN.
+
+select nombre from producto where precio >= 80 and precio <= 300;
+
+25. Lista todos los productos que tengan un precio entre 60€ y 200€. Utilizando el operador BETWEEN.
+
+select nombre from producto where precio between 60 and 200;
+
+26. Lista todos los productos que tengan un precio mayor que 200€ y que el código de fabricante sea igual a 6.
+
+select nombre from producto where precio > 200 and codigo_fabricante = 6;

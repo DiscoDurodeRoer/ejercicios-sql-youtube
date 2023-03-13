@@ -1,0 +1,11 @@
+28. Devuelve un listado con los nombres de los fabricantes donde la suma del precio de todos sus productos es superior a 1000 €.
+29. Devuelve un listado con el nombre del producto más caro que tiene cada fabricante. El resultado debe tener tres columnas: nombre del producto, precio y nombre del fabricante. El resultado tiene que estar ordenado alfabéticamente de menor a mayor por el nombre del fabricante.
+
+--- Subconsultas (En la cláusula WHERE) 
+-- Con operadores básicos de comparación:
+1. Devuelve todos los productos del fabricante Lenovo. (Sin utilizar INNER JOIN).
+2. Devuelve todos los datos de los productos que tienen el mismo precio que el producto más caro del fabricante Lenovo. (Sin utilizar INNER JOIN).
+3. Lista el nombre del producto más caro del fabricante Lenovo.
+4. Lista el nombre del producto más barato del fabricante Hewlett-Packard.
+5. Devuelve todos los productos de la base de datos que tienen un precio mayor o igual al producto más caro del fabricante Lenovo.
+6. Lista todos los productos del fabricante Asus que tienen un precio superior al precio medio de todos sus productos.

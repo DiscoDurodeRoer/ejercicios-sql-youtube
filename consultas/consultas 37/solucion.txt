@@ -1,0 +1,86 @@
+18. Muestra el precio máximo, precio mínimo, precio medio y el número total de productos de los fabricantes que tienen un precio medio superior a 200€. No es necesario mostrar el nombre del fabricante, con el código del fabricante es suficiente.
+
+select codigo_fabricante, min(precio), max(precio), avg(precio), count(*)
+from producto
+group by codigo_fabricante
+having avg(precio) > 200;
+
+19. Muestra el nombre de cada fabricante, junto con el precio máximo, precio mínimo, precio medio y el número total de productos de los fabricantes que tienen un precio medio superior a 200€. Es necesario mostrar el nombre del fabricante.
+
+select f.nombre, min(precio), max(precio), avg(precio), count(*)
+from producto p, fabricante f
+where p.codigo_fabricante = f.codigo
+group by f.nombre
+having avg(precio) > 200;
+
+20. Calcula el número de productos que tienen un precio mayor o igual a 180€.
+
+select count(*)
+from producto p
+where p.precio >= 180;
+
+21. Calcula el número de productos que tiene cada fabricante con un precio mayor o igual a 180€.
+
+select f.nombre, count(*)
+from producto p, fabricante f
+where p.codigo_fabricante = f.codigo and p.precio >= 180
+group by f.nombre;
+
+22. Lista el precio medio de los productos de cada fabricante, mostrando solamente el código del fabricante.
+
+select p.codigo_fabricante, avg(precio)
+from producto p
+group by p.codigo_fabricante;
+
+23. Lista el precio medio los productos de cada fabricante, mostrando solamente el nombre del fabricante.
+
+select f.nombre, avg(precio)
+from producto p, fabricante f
+where p.codigo_fabricante = f.codigo
+group by f.nombre
+
+24. Lista los nombres de los fabricantes cuyos productos tienen un precio medio mayor o igual a 150€.
+
+select f.nombre, avg(precio)
+from producto p, fabricante f
+where p.codigo_fabricante = f.codigo
+group by f.nombre
+having avg(precio) >= 150;
+
+25. Devuelve un listado con los nombres de los fabricantes que tienen 2 o más productos.
+
+select f.nombre, count(*)
+from producto p, fabricante f
+where p.codigo_fabricante = f.codigo
+group by f.nombre
+having count(*) >= 2;
+
+26. Devuelve un listado con los nombres de los fabricantes y el número de productos que tiene cada uno con un precio superior o igual a 220 €. No es necesario mostrar el nombre de los fabricantes que no tienen productos que cumplan la condición. Ejemplo del resultado esperado:
+
+nombre total
+Lenovo 2
+Asus 1
+Crucial 1
+
+select f.nombre, count(*) as total
+from producto p, fabricante f
+where p.codigo_fabricante = f.codigo and p.precio >= 220
+group by f.nombre
+order by total desc;
+
+27. Devuelve un listado con los nombres de los fabricantes y el número de productos que tiene cada uno con un precio superior o igual a 220 €. El listado debe mostrar el nombre de todos los fabricantes, es decir, si hay algún fabricante que no tiene productos con un precio superior o igual a 220€ deberá aparecer en el listado con un valor igual a 0 en el número de productos. Ejemplo del resultado esperado:
+
+nombre total
+Lenovo 2
+Crucial 1
+Asus 1
+Huawei 0
+Samsung 0
+Gigabyte 0
+Hewlett-Packard 0
+Xiaomi 0
+Seagate 0
+
+select distinct f.nombre, (select count(*) from producto where codigo_fabricante = p.codigo_fabricante and precio >= 220) as total
+from fabricante f LEFT JOIN producto p on p.codigo_fabricante = f.codigo
+order by total desc;

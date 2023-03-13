@@ -1,0 +1,61 @@
+-- Consultas sobre una tabla
+
+1. Lista el nombre de todos los productos que hay en la tabla producto.
+
+select nombre from producto;
+
+2. Lista los nombres y los precios de todos los productos de la tabla producto.
+
+select nombre, precio from producto;
+
+3. Lista todas las columnas de la tabla producto.
+
+select * from producto;
+
+4. Lista el nombre de los productos, el precio en euros y el precio en dólares estadounidenses (USD).
+
+select nombre, precio as euros, precio * 1.05 as dolares from producto;
+
+5. Lista el nombre de los productos, el precio en euros y el precio en dólares estadounidenses (USD). Utiliza los siguientes alias para las columnas: nombre de producto, euros, dólares.
+
+select nombre as "nombre producto", precio as euros, precio * 1.05 as dolares from producto;
+
+6. Lista los nombres y los precios de todos los productos de la tabla producto, convirtiendo los nombres a mayúscula.
+
+select upper(nombre) as "nombre producto" from producto;
+
+7. Lista los nombres y los precios de todos los productos de la tabla producto, convirtiendo los nombres a minúscula.
+
+select lower(nombre) as "nombre producto" from producto;
+
+8. Lista el nombre de todos los fabricantes en una columna, y en otra columna obtenga en mayúsculas los dos primeros caracteres del nombre del fabricante.
+
+select nombre, upper(substr(nombre, 0, 2)) from fabricante;
+
+9. Lista los nombres y los precios de todos los productos de la tabla producto, redondeando el valor del precio.
+
+select nombre, round(precio) from producto;
+
+10. Lista los nombres y los precios de todos los productos de la tabla producto, truncando el valor del precio para mostrarlo sin ninguna cifra decimal.
+
+select nombre, trunc(precio) from producto;
+
+11. Lista el código de los fabricantes que tienen productos en la tabla producto.
+
+select codigo_fabricante from producto;
+
+12. Lista el código de los fabricantes que tienen productos en la tabla producto, eliminando los códigos que aparecen repetidos.
+
+select distinct codigo_fabricante from producto;
+
+13. Lista los nombres de los fabricantes ordenados de forma ascendente.
+
+select nombre from fabricante order by nombre;
+
+14. Lista los nombres de los fabricantes ordenados de forma descendente.
+
+select nombre from fabricante order by nombre desc;
+
+15. Lista los nombres de los productos ordenados en primer lugar por el nombre de forma ascendente y en segundo lugar por el precio de forma descendente.
+
+select nombre from producto order by nombre, precio desc;

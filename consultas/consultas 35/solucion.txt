@@ -1,0 +1,73 @@
+6. Devuelve una lista de todos los productos del fabricante Lenovo.
+
+select p.*
+from producto p, fabricante f 
+where p.codigo_fabricante = f.codigo
+and upper(f.nombre) = 'LENOVO';
+
+7. Devuelve una lista de todos los productos del fabricante Crucial que tengan un precio mayor que 200€.
+
+select p.*
+from producto p, fabricante f 
+where p.codigo_fabricante = f.codigo
+and upper(f.nombre) = 'CRUCIAL' and p.precio > 200;
+
+8. Devuelve un listado con todos los productos de los fabricantes Asus, Hewlett-Packardy Seagate. Sin utilizar el operador IN.
+
+select p.*
+from producto p, fabricante f 
+where p.codigo_fabricante = f.codigo 
+and (upper(f.nombre) = 'ASUS' or  upper(f.nombre) = 'HEWLETT-PACKARDY' or upper(f.nombre) = 'SEAGATE');
+
+9. Devuelve un listado con todos los productos de los fabricantes Asus, Hewlett-Packardy Seagate. Utilizando el operador IN.
+
+select p.*
+from producto p, fabricante f 
+where p.codigo_fabricante = f.codigo 
+and upper(f.nombre) IN ('ASUS','HEWLETT-PACKARDY','SEAGATE
+
+10. Devuelve un listado con el nombre y el precio de todos los productos de los fabricantes cuyo nombre termine por la vocal e.
+
+select p.nombre, p.precio
+from producto p, fabricante f 
+where p.codigo_fabricante = f.codigo 
+and upper(f.nombre) LIKE '%E'
+
+11. Devuelve un listado con el nombre y el precio de todos los productos cuyo nombre de fabricante contenga el carácter w en su nombre.
+
+select p.nombre, p.precio
+from producto p, fabricante f 
+where p.codigo_fabricante = f.codigo 
+and upper(f.nombre) LIKE '%W%';
+
+12. Devuelve un listado con el nombre de producto, precio y nombre de fabricante, de todos los productos que tengan un precio mayor o igual a 180€. Ordene el resultado en primer lugar por el precio (en
+orden descendente) y en segundo lugar por el nombre (en orden ascendente)
+
+select p.nombre, p.precio, f.nombre
+from producto p, fabricante f 
+where p.codigo_fabricante = f.codigo 
+and p.precio >= 180
+order by p.precio desc, p.nombre;
+
+13. Devuelve un listado con el código y el nombre de fabricante, solamente de aquellos fabricantes que tienen productos asociados en la base de datos.
+
+select distinct f.codigo, f.nombre
+from producto p, fabricante f 
+where p.codigo_fabricante = f.codigo
+
+-- Consultas multitabla (Composición externa)
+
+1. Devuelve un listado de todos los fabricantes que existen en la base de datos, junto con los productos que tiene cada uno de ellos. El listado deberá mostrar también aquellos fabricantes que no tienen productos asociados.
+
+select f.nombre, p.nombre, p.precio
+from fabricante f LEFT JOIN producto p on f.codigo = p.codigo_fabricante
+
+2. Devuelve un listado donde sólo aparezcan aquellos fabricantes que no tienen ningún producto asociado.
+
+select f.nombre
+from fabricante f LEFT JOIN producto p on f.codigo = p.codigo_fabricante
+where p.nombre is null;
+
+3. ¿Pueden existir productos que no estén relacionados con un fabricante? Justifica tu respuesta.
+
+En este caso no, ya que la representación del modelo indica que es 1:N, que significa que siempre debe estar un producto asociado a un fabricante y que varios fabricantes pueden tener varios productos.

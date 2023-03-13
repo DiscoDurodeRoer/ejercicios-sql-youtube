@@ -1,0 +1,78 @@
+-- Consultas resumen
+
+1. Calcula el número total de productos que hay en la tabla productos.
+
+select count(*) from producto;
+
+2. Calcula el número total de fabricantes que hay en la tabla fabricante.
+
+select count(*) from fabricante;
+
+3. Calcula el número de valores distintos de código de fabricante aparecen en la tabla productos.
+
+select count(distinct codigo_fabricante) from producto;
+
+4. Calcula la media del precio de todos los productos.
+
+select avg(precio) from producto;
+
+5. Calcula el precio más barato de todos los productos.
+
+select min(precio) from producto;
+
+6. Calcula el precio más caro de todos los productos.
+
+select max(precio) from producto;
+
+7. Lista el nombre y el precio del producto más barato.
+
+select nombre, precio from producto
+where precio = (select min(precio) from producto);
+
+8. Lista el nombre y el precio del producto más caro.
+
+select nombre, precio from producto
+where precio = (select max(precio) from producto);
+
+9. Calcula la suma de los precios de todos los productos.
+
+select sum(precio) from producto
+
+10. Calcula el número de productos que tiene el fabricante Asus.
+
+select count(*) from producto where codigo_fabricante = (select codigo from fabricante where upper(nombre)='ASUS');
+
+11. Calcula la media del precio de todos los productos del fabricante Asus.
+
+select avg(precio) from producto where codigo_fabricante = (select codigo from fabricante where upper(nombre)='ASUS');
+
+12. Calcula el precio más barato de todos los productos del fabricante Asus.
+
+select min(precio) from producto where codigo_fabricante = (select codigo from fabricante where upper(nombre)='ASUS');
+
+13. Calcula el precio más caro de todos los productos del fabricante Asus.
+
+select max(precio) from producto where codigo_fabricante = (select codigo from fabricante where upper(nombre)='ASUS');
+
+14. Calcula la suma de todos los productos del fabricante Asus.
+
+select sum(precio) from producto where codigo_fabricante = (select codigo from fabricante where upper(nombre)='ASUS');
+
+15. Muestra el precio máximo, precio mínimo, precio medio y el número total de productos que tiene el fabricante Crucial.
+
+select max(precio), min(precio), avg(precio), count(*) 
+from producto where codigo_fabricante = (select codigo from fabricante where upper(nombre)='CRUCIAL');
+
+16. Muestra el número total de productos que tiene cada uno de los fabricantes.El listado también debe incluir los fabricantes que no tienen ningún producto. El resultado mostrará dos columnas, una con el nombre del fabricante y otra con el número de productos que tiene. Ordene el resultado descendentemente por el número de productos.
+
+select f.nombre, count(p.codigo) as total
+from fabricante f LEFT JOIN producto p on f.codigo = p.codigo_fabricante
+group by f.nombre
+order by total desc;
+
+17. Muestra el precio máximo, precio mínimo y precio medio de los productos de cada uno de los fabricantes. El resultado mostrará el nombre del fabricante junto con los datos que se solicitan.
+
+select f.nombre, min(precio), max(precio), avg(precio)
+from fabricante f, producto p
+where f.codigo = p.codigo_fabricante
+group by f.nombre;

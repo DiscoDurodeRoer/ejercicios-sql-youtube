@@ -1,0 +1,75 @@
+
+27. Lista todos los productos donde el código de fabricante sea 1, 3 o 5. Sin utilizar el operador IN.
+
+select * from producto where codigo_fabricante = 1 or codigo_fabricante = 3 or codigo_fabricante = 5;
+
+28. Lista todos los productos donde el código de fabricante sea 1, 3 o 5. Utilizando el operador IN.
+
+select * from producto where codigo_fabricante IN (1,3,5); 
+
+29. Lista el nombre y el precio de los productos en céntimos (Habrá que multiplicar por 100 el valor del precio). Cree un alias para la columna que contiene el precio que se llame céntimos.
+
+select nombre, precio * 100 as centimos from producto;
+
+30. Lista los nombres de los fabricantes cuyo nombre empiece por la letra S.
+
+select nombre from fabricante where upper(nombre) LIKE 'S%';
+
+31. Lista los nombres de los fabricantes cuyo nombre termine por la vocal e.
+
+select nombre from fabricante where lower(nombre) LIKE '%e';
+
+32. Lista los nombres de los fabricantes cuyo nombre contenga el carácter w.
+
+select nombre from fabricante where lower(nombre) LIKE '%w%';
+
+33. Lista los nombres de los fabricantes cuyo nombre sea de 4 caracteres.
+
+select nombre from fabricante where lower(nombre) LIKE '____';
+
+34. Devuelve una lista con el nombre de todos los productos que contienen la cadena Portátil en el nombre.
+
+select nombre from producto where lower(nombre) LIKE '%portátil%';
+
+35. Devuelve una lista con el nombre de todos los productos que contienen la cadena Monitor en el nombre y tienen un precio inferior a 215 €.
+
+select nombre from producto where lower(nombre) LIKE '%monitor%' and precio < 215;
+
+36. Lista el nombre y el precio de todos los productos que tengan un precio mayor o igual a 180€. Ordene el resultado en primer lugar por el precio (en orden descendente) y en segundo lugar por el nombre (en orden ascendente).
+
+select nombre, precio from producto where precio >= 180 order by precio desc, nombre;
+
+-- Consultas multitabla (Composición interna)
+
+1. Devuelve una lista con el nombre del producto, precio y nombre de fabricante de todos los productos de la base de datos.
+
+select p.nombre, p.precio, f.nombre
+from producto p, fabricante f
+where p.codigo_fabricante = f.codigo;
+
+2. Devuelve una lista con el nombre del producto, precio y nombre de fabricante de todos los productos de la base de datos. Ordene el resultado por el nombre del fabricante, por orden alfabético.
+
+select p.nombre, p.precio, f.nombre
+from producto p, fabricante f
+where p.codigo_fabricante = f.codigo
+order by f.nombre;
+
+3. Devuelve una lista con el código del producto, nombre del producto, código del fabricante y nombre del fabricante, de todos los productos de la base de datos.
+
+select p.codigo, p.nombre, p.precio, f.nombre
+from producto p, fabricante f
+where p.codigo_fabricante = f.codigo;
+
+4. Devuelve el nombre del producto, su precio y el nombre de su fabricante, del producto más barato.
+
+select p.nombre, p.precio, f.nombre
+from producto p, fabricante f
+where p.codigo_fabricante = f.codigo
+and p.precio = (select min(precio) from producto);
+
+5. Devuelve el nombre del producto, su precio y el nombre de su fabricante, del producto más caro.
+
+select p.nombre, p.precio, f.nombre
+from producto p, fabricante f
+where p.codigo_fabricante = f.codigo
+and p.precio = (select max(precio) from producto);
